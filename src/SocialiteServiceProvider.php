@@ -12,7 +12,6 @@ class SocialiteServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-socialite')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigrations();
+            ->hasMigration('create_social_accounts_table');
     }
 }
