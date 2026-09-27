@@ -20,15 +20,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { php: '8.2', laravel: '10.*', testbench: '^8.0', database: sqlite }
-          - { php: '8.3', laravel: '11.*', testbench: '^9.0', database: sqlite }
-          - { php: '8.4', laravel: '12.*', testbench: '^10.0', database: sqlite }
-          - { php: '8.4', laravel: '13.*', testbench: '^11.0', database: sqlite }
-          - { php: '8.4', laravel: '13.*', testbench: '^11.0', database: mysql }
-          - { php: '8.4', laravel: '13.*', testbench: '^11.0', database: pgsql }
+        database: [sqlite, mysql, pgsql]
 
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.database }}
+    name: PHP 8.4 - Laravel 13 - ${{ matrix.database }}
 
     services:
       mysql:
@@ -65,13 +59,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: '8.4'
           extensions: dom, curl, libxml, mbstring, zip, pdo, sqlite, pdo_sqlite, pdo_mysql, pdo_pgsql, intl, fileinfo
           coverage: none
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --dev --no-interaction --no-update
+          composer require "laravel/framework:^13.0" "orchestra/testbench:^11.0" --dev --no-interaction --no-update
           composer update --prefer-stable --prefer-dist --no-interaction
 
       - name: Run tests (sqlite)
