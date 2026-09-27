@@ -1,3 +1,9 @@
+<div class="filament-hidden">
+
+![Laravel Socialite](https://raw.githubusercontent.com/jeffersongoncalves/laravel-socialite/main/art/jeffersongoncalves-laravel-socialite.png)
+
+</div>
+
 # Laravel Socialite
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jeffersongoncalves/laravel-socialite.svg?style=flat-square)](https://packagist.org/packages/jeffersongoncalves/laravel-socialite)
